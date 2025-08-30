@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from datetime import datetime
+from typing import Optional
 
 class ExpenseBase(BaseModel):
     title: str
@@ -12,6 +13,15 @@ class ExpenseCreate(ExpenseBase):
 class Expense(ExpenseBase):
     id: int
     date: datetime
+    user_id: Optional[int]
+
+class UserCreate(BaseModel):
+    username: str
+    password: str
+
+class User(BaseModel):
+    id: int
+    username: str
 
     class Config:
         from_attributes = True
